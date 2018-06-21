@@ -3,6 +3,7 @@ import SearchBar from '../partials/SearchBar';
 import VideoPost from './VideoPost';
 import videoService from '../../services/videoService'
 import { SuggestedVideos } from './SuggestedVideos';
+import { PreviouslyVisitedVideos } from './PreviouslyVisited'
 
 
 
@@ -13,7 +14,7 @@ class FeedPage extends React.Component {
         this.state = {
             videoUrl: 'https://www.youtube.com/embed/',
             defVideo: '',
-            returnVideos: null,
+            returnVideo: null,
             suggestedVideos: []
         }
     }
@@ -27,7 +28,27 @@ class FeedPage extends React.Component {
             this.setState({
                 returnVideo: video.id
             });
-            this.loadSuggestedVideos(video.id)
+            this.loadSuggestedVideos(video.id);
+            let local = localStorage.getItem('videos')
+            if (!local) {
+                let visitedVideos = [];
+                visitedVideos.push(video)
+                localStorage.setItem('videos', JSON.stringify(visitedVideos))
+            } else {
+
+                local = JSON.parse(local);
+
+                if (local.length < 20) {
+
+
+                    local.splice(0, 0, video);
+                    localStorage.setItem('videos', JSON.stringify(local))
+
+                }
+            }
+
+
+
         })
     }
     searchHandler = (searchInputValue) => {
@@ -42,8 +63,12 @@ class FeedPage extends React.Component {
         })
     }
     onClickHandler = (event) => {
+        this.loadSuggestedVideos(event.target.id)
+        // this.setState({
+        //     returnVideo: event.target.id
+        // })
         this.loadVideo(event.target.id)
-        console.log(event.target.id)
+
     }
     render() {
         return (
@@ -51,12 +76,16 @@ class FeedPage extends React.Component {
                 <SearchBar searchHandler={this.searchHandler} />
                 <div className='row'>
                     <div className='col-6'>
-                        {(this.state.returnVideo) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideo}`} /> : 'Loading...'}
+                        <div>
+                            {(this.state.returnVideo) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideo}`} /> : 'Loading...'}
+                        </div>
+                        <PreviouslyVisitedVideos />
                     </div>
                     <div className='offset-1 col-5'>
                         <SuggestedVideos videos={this.state.suggestedVideos} onClickHandler={this.onClickHandler} />
                     </div>
                 </div>
+
             </div>
         )
     }
