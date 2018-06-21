@@ -1,5 +1,4 @@
 import React from 'react';
-import videoService from '../../services/videoService';
 import './SearchBar.css'
 
 class SearchBar extends React.Component {
@@ -29,7 +28,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className='container search-box'>
+            <div className='search-box'>
                 <input type='text' value={this.state.searchInput} onChange={this.onChangeHandler} onKeyUp={this.onKeyupHandler} />
 
             </div>
