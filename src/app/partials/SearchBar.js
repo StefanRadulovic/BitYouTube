@@ -12,12 +12,11 @@ class SearchBar extends React.Component {
     onKeyupHandler = (event) => {
 
         if (event.keyCode === 13) {
-            videoService.getSearchVideo(event.target.value).then(
-                this.props.loadVideo(event.target.value),
-                this.setState({
-                    searchInput: ''
-                })
-            )
+            this.props.searchHandler(event.target.value)
+            this.setState({
+                searchInput: ''
+            })
+
 
         }
     }

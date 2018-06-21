@@ -28,11 +28,14 @@ class FeedPage extends React.Component {
 
         })
     }
+    searchHandler = (searchInputValue) => {
+        this.loadVideo(searchInputValue)
+    }
 
     render() {
         return (
             <div>
-                <SearchBar loadVideo={this.loadVideo} />
+                <SearchBar searchHandler={this.searchHandler} />
                 {(this.state.returnVideos) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideos[0].id.videoId}`} /> : 'Loading...'}
 
             </div>
