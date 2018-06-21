@@ -1,5 +1,4 @@
 import React from 'react';
-import videoService from '../../services/videoService';
 import './SearchBar.css'
 
 class SearchBar extends React.Component {

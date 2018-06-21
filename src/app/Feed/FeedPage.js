@@ -12,7 +12,8 @@ class FeedPage extends React.Component {
         this.state = {
             videoUrl: 'https://www.youtube.com/embed/',
             defVideo: '',
-            returnVideos: null
+            returnVideos: null,
+            suggestedVideos: []
         }
     }
 
@@ -21,22 +22,31 @@ class FeedPage extends React.Component {
         this.loadVideo(searchInput)
     }
     loadVideo = (searchInput) => {
-        videoService.getSearchVideo(searchInput).then(data => {
+        videoService.getSearchVideo(searchInput).then(video => {
             this.setState({
-                returnVideos: data.items
+                returnVideo: video.id
             });
-
+            this.loadSuggestedVideos(video.id)
         })
     }
     searchHandler = (searchInputValue) => {
         this.loadVideo(searchInputValue)
     }
+    loadSuggestedVideos = (videoId) => {
+        videoService.getSuggestedVideos(videoId).then(videos => {
+            console.log(videos);
 
+            this.setState({
+                suggestedVideos: videos
+            })
+
+        })
+    }
     render() {
         return (
             <div>
                 <SearchBar searchHandler={this.searchHandler} />
-                {(this.state.returnVideos) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideos[0].id.videoId}`} /> : 'Loading...'}
+                {(this.state.returnVideo) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideo}`} /> : 'Loading...'}
 
             </div>
         )
