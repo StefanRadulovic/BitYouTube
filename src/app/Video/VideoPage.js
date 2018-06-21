@@ -6,7 +6,7 @@ export default class Video extends React.Component {
         super(props);
         this.state = {
             videoUrl: 'https://www.youtube.com/embed/',
-            defVideo: 'hotel claifornia',
+            defVideo: '',
             returnVideos: null
         }
     }
@@ -26,7 +26,7 @@ export default class Video extends React.Component {
     render() {
         return (
 
-            <div>
+            <div className='video container'>
                 {(this.state.returnVideos) ?
                     < iframe width="560" height="315" src={`${this.state.videoUrl}${this.state.returnVideos[0].id.videoId}`} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen ></iframe> : ''}
             </div >
