@@ -12,7 +12,7 @@ const PreviouslyVisitedVideos =(props)=> {
             
             <Fragment>
                 <p id='previous'>Previous</p>
-            {local && videos.length!==1 ? <SuggestedVideos videos={videos.slice(1,videos.length)} /> :<NoPreviousVideos/> }
+            {local && videos.length!==1 ? <SuggestedVideos videos={videos.slice(1,videos.length)} onClickHandler={props.onClickHandler} /> :<NoPreviousVideos/> }
             </Fragment>
         )
     }
