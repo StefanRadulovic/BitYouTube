@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className='container search-box'>
+            <div className='search-box'>
                 <input type='text' value={this.state.searchInput} onChange={this.onChangeHandler} onKeyUp={this.onKeyupHandler} />
 
             </div>

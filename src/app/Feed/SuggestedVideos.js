@@ -1,9 +1,19 @@
 import React from 'react';
+import './SuggestedVideo.css'
 
 export const SuggestedVideos = (props) => {
-    return (
-        <div>
-            <img src={props.video.imgUrl} alt='' />
-        </div>
-    )
+    return props.videos.map(video => {
+        return (
+            <div className='row'>
+                <div className='col-6'>
+                    <img src={video.imgUrl} alt='' id={video.id} onClick={props.onClickHandler} />
+                </div>
+                <div className='col-6'>
+                    <p>{video.title}</p>
+                </div>
+
+            </div>
+        )
+    })
+
 }

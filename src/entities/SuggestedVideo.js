@@ -1,7 +1,8 @@
 class SuggestedVideo {
-    constructor(id, imgUrl) {
-        this.id = id,
-            this.imgUrl = imgUrl
+    constructor(id, imgUrl, title) {
+        this.id = id;
+        this.imgUrl = imgUrl;
+        this.title = title
     }
 }
 

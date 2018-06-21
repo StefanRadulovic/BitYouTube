@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '../partials/SearchBar';
 import VideoPost from './VideoPost';
 import videoService from '../../services/videoService'
+import { SuggestedVideos } from './SuggestedVideos';
 
 
 
@@ -34,20 +35,28 @@ class FeedPage extends React.Component {
     }
     loadSuggestedVideos = (videoId) => {
         videoService.getSuggestedVideos(videoId).then(videos => {
-            console.log(videos);
-
             this.setState({
                 suggestedVideos: videos
             })
 
         })
     }
+    onClickHandler = (event) => {
+        this.loadVideo(event.target.id)
+        console.log(event.target.id)
+    }
     render() {
         return (
-            <div>
+            <div className='container'>
                 <SearchBar searchHandler={this.searchHandler} />
-                {(this.state.returnVideo) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideo}`} /> : 'Loading...'}
-
+                <div className='row'>
+                    <div className='col-6'>
+                        {(this.state.returnVideo) ? <VideoPost url={`${this.state.videoUrl}${this.state.returnVideo}`} /> : 'Loading...'}
+                    </div>
+                    <div className='offset-1 col-5'>
+                        <SuggestedVideos videos={this.state.suggestedVideos} onClickHandler={this.onClickHandler} />
+                    </div>
+                </div>
             </div>
         )
     }

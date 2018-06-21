@@ -22,7 +22,7 @@ class VideoService {
         }).then(data => {
             let videos = data.items
             return videos.map(video => {
-                return new SuggestedVideo(video.id.videoId, video.snippet.thumbnails.high.url)
+                return new SuggestedVideo(video.id.videoId, video.snippet.thumbnails.high.url, video.snippet.title)
             })
 
         })
