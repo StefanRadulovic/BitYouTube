@@ -13,6 +13,7 @@ class VideoService {
             return response.json()
         }).then(data => {
             return data
+
         })
     }
 }
