@@ -4,7 +4,7 @@ import './SuggestedVideo.css'
 export const SuggestedVideos = (props) => {
     return props.videos.map(video => {
         return (
-            <div className='row'>
+            <div className='row' key={video.id}>
                 <div className='col-6'>
                     <img src={video.imgUrl} alt='' id={video.id} onClick={props.onClickHandler} />
                 </div>
