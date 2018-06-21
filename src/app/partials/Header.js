@@ -5,7 +5,7 @@ import './Header.css'
 export const Header = () => {
     return (
         <header>
-            <span>Bit Youtube</span>
+            <div className='container'><span>Bit Tube</span></div>
         </header>
     )
 }
