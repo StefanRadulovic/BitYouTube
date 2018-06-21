@@ -1,0 +1,12 @@
+.sad_icon{
+    text-align: center;
+    font-size: 45px;
+  }
+  p.sad_icon{
+    width: 60%;
+    margin: 60px auto
+  }
+  #sadface{
+    width: 120px;
+    margin: 100px 60px 60px 60px;
+  }
