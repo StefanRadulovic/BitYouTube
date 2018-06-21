@@ -1,6 +1,8 @@
 class SearchVideo {
-    constructor(id) {
-        this.id = id
+    constructor(id, title, img) {
+        this.id = id;
+        this.title = title;
+        this.imgUrl = img
     }
 }
 

@@ -8,7 +8,8 @@ class VideoService {
         return fetch(`${searchUrl}${text}`).then(response => {
             return response.json()
         }).then(data => {
-            return new SearchVideo(data.items[0].id.videoId)
+            let video = data.items[0]
+            return new SearchVideo(video.id.videoId, video.snippet.title, video.snippet.thumbnails.high.url)
 
         })
 
