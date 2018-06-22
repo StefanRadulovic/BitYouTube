@@ -1,5 +1,6 @@
 import React from 'react';
-import './SearchBar.css'
+import './SearchBar.css';
+import { debounce } from 'lodash'
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -7,29 +8,36 @@ class SearchBar extends React.Component {
         this.state = {
             searchInput: ''
         }
+        this.searchHandler = debounce(this.searchHandler, 500)
     }
-    onKeyupHandler = (event) => {
+    // onKeyupHandler = (event) => {
 
-        if (event.keyCode === 13) {
-            this.props.searchHandler(event.target.value)
-            this.setState({
-                searchInput: ''
-            })
+    //     if (event.keyCode === 13) {
+    //         this.props.searchHandler(event.target.value)
+    //         this.setState({
+    //             searchInput: ''
+    //         })
 
 
-        }
+    //     }
+    // }
+
+    searchHandler = (searchInput) => {
+        this.props.searchHandler(searchInput)
     }
-
     onChangeHandler = (event) => {
+        this.searchHandler(event.target.value)
+
         this.setState({
             searchInput: event.target.value
-        })
+        });
+
     }
 
     render() {
         return (
             <div className='search-box'>
-                <input type='text' value={this.state.searchInput} onChange={this.onChangeHandler} onKeyUp={this.onKeyupHandler} />
+                <input type='text' value={this.state.searchInput} onChange={this.onChangeHandler} placeholder="Search videos" />
 
             </div>
         )
