@@ -9,8 +9,11 @@ class VideoService {
             return response.json()
         }).then(data => {
             let video = data.items[0]
-            return new SearchVideo(video.id.videoId, video.snippet.title, video.snippet.thumbnails.high.url)
-
+            if (video !== undefined && video.id.videoId) {
+                return new SearchVideo(video.id.videoId, video.snippet.title, video.snippet.thumbnails.high.url)
+            } else {
+                return null
+            }
         })
 
 
