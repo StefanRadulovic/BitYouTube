@@ -34,6 +34,7 @@ class FeedPage extends React.Component {
         videoService.getSearchVideo(searchInput).then(video => {
 
             if (video) {
+                this.setPageTittle(video.title)
                 this.setState({
                     returnVideo: video.id
                 });
@@ -56,7 +57,9 @@ class FeedPage extends React.Component {
             }
         })
     }
-
+    setPageTittle = (title) => {
+        document.querySelector('head title').textContent = title
+    }
 
     setVideoInLocalStorage = (video) => {
         let visitedVideos = [];
