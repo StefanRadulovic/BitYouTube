@@ -38,6 +38,7 @@ class FeedPage extends React.Component {
 
                 local = JSON.parse(local);
 
+
                 if (local.length < 20) {
 
 
